@@ -16,26 +16,26 @@ Here are the advantages I’ve found in using this stack:
 
 * [Angular](https://angularjs.org/)
 
-   The most popular front-end framework.
-   Angular directives breathe life into your HTML elements making them functional and interactive.
-   Provides 2-way data binding so that changes in the browser are represented in your code and vice-versa without having to write hundreds of lines of spaghetti code querying the DOM.
-   Enforces a strict structure creating better organization within and consistency between apps.
+ * The most popular front-end framework.
+ * Angular directives breathe life into your HTML elements making them functional and interactive.
+ * Provides 2-way data binding so that changes in the browser are represented in your code and vice-versa without having to write hundreds of lines of spaghetti code querying the DOM.
+ * Enforces a strict structure creating better organization within and consistency between apps.
 
 * [Ionic](http://ionicframework.com/)
 
-   More than just another HTML templating system, Ionic is also a fully functional Node server that greatly simplifies setting up your development environment.
-   Packaging your web app for native mobile deployment is baked right in.
-   The interface provides native look and feel for mobile environments creating a higher quality experience for your users.
-   Cordova is baked right in allowing you access to mobile only features like the accelerometer, GPS, etc.
-   Uses Angular as its logic layer.
+ * More than just another HTML templating system, Ionic is also a fully functional Node server that greatly simplifies setting up your development environment.
+ * Packaging your web app for native mobile deployment is baked right in.
+ * The interface provides native look and feel for mobile environments creating a higher quality experience for your users.
+ * Cordova is baked right in allowing you access to mobile only features like the accelerometer, GPS, etc.
+ * Uses Angular as its logic layer.
 
 * [Firebase](https://www.firebase.com/)
 
-   A simple yet powerful Restful API based datastore.
-   No vendor lock-in.
-   Provides auth logic and other great tools like the GeoLocation plugin.
-   Has amazing integration with Angular via Angularfire.
-   Provides not 1, not 2, but 3-way data binding so any changes made in your interface are automatically represented in your code and datastore; in most cases eliminating the need for push notifications.
+ * A simple yet powerful Restful API based datastore.
+ * No vendor lock-in.
+ * Provides auth logic and other great tools like the GeoLocation plugin.
+ * Has amazing integration with Angular via Angularfire.
+ * Provides not 1, not 2, but 3-way data binding so any changes made in your interface are automatically represented in your code and datastore; in most cases eliminating the need for push notifications.
 
 ---
 ## Requirements
