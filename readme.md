@@ -8,7 +8,7 @@
 I created Wobble Blog to host my own personal blog featuring front end only technology and more specifically jIonic, Angular, and Firebase - three great technologies that play great together.
 Then I blogged about creating my blog on the blog I created to blog about creating this blog.
 
-This article is aimed towards beginners but it assumes an understanding of basic front-end web development concepts and practices including HTML, CSS, JS, Angular, and Git.
+This article is geared towards beginners but it assumes an understanding of basic front-end web development concepts and practices including HTML, CSS, JS, Angular, and Git.
 If you’re struggling with any of these concepts, you can brush up your skills at [freeCodeCamp](http://freecodecamp.com/) and [thinkster.io](https://thinkster.io/).
 If all you need is an Angular crash course, [this is a great one](https://www.airpair.com/angularjs/posts/angularjs-tutorial).
 
@@ -46,6 +46,7 @@ Considerations for this blog:
  * Posts should have a visibility flag.
  * Posts should have a title, content, and a date.
  * Posts should have access to images saved in the datastore.
+ * Posts should use slugs as keys.
 * The User should be able to navigate between posts with previous and next buttons.
 * The User should be able to search the blog.
 * The User should be able to find posts by tag.
@@ -125,7 +126,7 @@ In this tutorial we’ll be following the recommendations laid out in [johnpapa�
 Let’s start by cleaning up the `app.js` file and renaming the app:
 ```javascript
 angular.module('wobble-blog', ['ionic'])
-.run(appRun);
+.run(appRun); //Good app!
 
 /* global angular appRun */
 ```
@@ -150,9 +151,13 @@ appRun.$inject = ['$ionicPlatform'];
 ```
 
 The global statements at the end of each file are for C9’s JS validation.
-Don’t forget to change the app name in your index.html file.
+Change the app name in your index.html file.
 
     <body ng-app="wobble-blog">
+And reference it in your head BEFORE `app.js` because we're referencing the function from `app.js` not attaching it to an existing module.
+
+    <script src="js/app.run.js"></script>
+    <script src="js/app.js"></script>
 
 ---
 ## Data Structure
@@ -192,8 +197,8 @@ Since I’ll be the only one administering it, I’ll be hardcoding that in.
 In order to communicate with firebase you’ll need to create a firebase account and a new database for your blog.
 I’ll wait here while you go knock that out.
 
-Because the app is so simple and the data stored will be very light, we’re going to use Angularfire’s 3-way data binding for the whole thing.
-It’s not recommended to do this for massive or deep data stores but it will likely be years before this blog becomes too complex, if ever.
+Because the app is so simple and the data stored will be very light, we’re going to use Angularfire’s 3-way data binding on one object for the whole app.
+It’s not recommended to do this for massive or deep data stores but it will likely be years before this blog becomes too complex, if it ever does.
 
 Let’s create a service in a file called firebase.service.js and attach it to our app:
 
@@ -209,9 +214,6 @@ firebaseService.$inject = ['$rootScope', '$firebaseObject']
 /* global angular Firebase */
 ```
 
-We’re injecting the `$rootScope` into the service so we can broadcast to the entire app.
-We should be injecting `$firebaseArray` because we’re accessing a list of blog posts, but because the data will be light and simple I’m going to use `$firebaseObject` as it’s easier to work with.
-
 Inside the `firebaseService` function add the following lines to tell the app where to find your data.
 Make sure to change the URL to your own datastore.
 Wobble-blog is mine and you can’t have it:
@@ -221,18 +223,11 @@ var ref  = new Firebase("https://wobble-blog.firebaseio.com/");
 var data = $firebaseObject(ref);
 ```
 
-Now let’s load the data and tell the rest of the app the happy news as soon as that data is available.
+Now let’s return the promise created by Angularfire.
 
 ```javascript
-  data.$loaded($rootScope, 'data').then(broadcast);
-  
-  function broadcast(data) {
-    $rootScope.$broadcast('data ready', data);
-  }
+  return data.$loaded();
 ```
-
-We’re using `$broadcast` instead of loading data into each controller to avoid creating duplicate code.
-Normally you’d break down the data into smaller chunks and broadcast the pieces as they are loaded.
 
 All together now:
 
@@ -240,12 +235,7 @@ All together now:
 function firebaseService($rootScope, $firebaseObject) {
   var ref  = new Firebase("https://wobble-blog.firebaseio.com/");
   var data = $firebaseObject(ref);
-  
-  data.$loaded().then(broadcast);
-  
-  function broadcast(data) {
-    $rootScope.$broadcast('data ready', data);
-  }
+  return data.$loaded();
 };
 
 angular.module('wobble-blog')
@@ -256,4 +246,16 @@ firebaseService.$inject = ['$rootScope', '$firebaseObject']
 /* global angular Firebase */
 ```
 
+Add the script to your `index.html` head after `app.js`.
+I won't be reminding you to do this anymore.
+You got it from here.
+
+---
 ## Setting Up Routes
+
+Angular uses routes to load partials, pass params, and navigate the app.
+AngularUI routing improves on Angular's routing by adding states, nesting, named states, and multiple views in a page or partial.
+Ionic improves on AngularUI routes even further by adding animations, history, and more.
+So we'll be using Ionic routes in this app.
+
+
