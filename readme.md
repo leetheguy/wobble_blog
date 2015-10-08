@@ -8,7 +8,8 @@
 I created Wobble Blog to host my own personal blog featuring front end only technology and more specifically jIonic, Angular, and Firebase - three great technologies that play great together.
 Then I blogged about creating my blog on the blog I created to blog about creating this blog.
 
-This article is geared towards beginners but it assumes an understanding of basic front-end web development concepts and practices including HTML, CSS, JS, Angular, and Git.
+This article is geared towards near beginners.
+It assumes a solid understanding of front-end web development concepts and practices including HTML, CSS, JS, Angular, and Git.
 If you’re struggling with any of these concepts, you can brush up your skills at [freeCodeCamp](http://freecodecamp.com/) and [thinkster.io](https://thinkster.io/).
 If all you need is an Angular crash course, [this is a great one](https://www.airpair.com/angularjs/posts/angularjs-tutorial).
 
@@ -170,9 +171,10 @@ So here’s our data tree:
 
 * posts
  * post
-  * publish_date
+  * publishDate
   * visible
   * title
+  * titleSlug
   * content
   * tags
    * submarine
@@ -257,5 +259,42 @@ Angular uses routes to load partials, pass params, and navigate the app.
 AngularUI routing improves on Angular's routing by adding states, nesting, named states, and multiple views in a page or partial.
 Ionic improves on AngularUI routes even further by adding animations, history, and more.
 So we'll be using Ionic routes in this app.
+
+
+
+
+
+
+
+---
+## Building the Interface
+
+
+---
+## Making it Look Like a Website
+
+
+---
+## Working With Data
+
+
+---
+## Auth Logic
+
+
+---
+## Testing on Android and iOS
+
+
+---
+## TDD?
+There's really no logic in this app.
+It's all wiring.
+As that's the case the only thing would would be testing would be our libraries.
+I'll leave that to the people who created them.A Little Bit of Configuration
+
+
+
+
 
 

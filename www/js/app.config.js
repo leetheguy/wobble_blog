@@ -1,15 +1,35 @@
-function router($stateProvider, $urlRouterProvider) {
+function appConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 
-  $stateProvider.state('home', {
+  var home = {
     url: '/',
-    template: '<p>Hello, world!</p>'
-  });
+    templateUrl: 'templates/home.html'
+  }
+
+  var posts = {
+    url: '/posts',
+    templateUrl: 'templates/posts.html'
+  }
+  
+  var post = {
+    url: '/post/:titleSlug',
+    templateUrl: 'templates/post.html'
+  }
+
+  var newPost = {
+    url: '/new-post',
+    templateUrl: 'templates/new-post.html'
+  }
+
+  var editPost = {
+    url: '/edit-post',
+    templateUrl: 'templates/edit-post.html'
+  }
+  
+  $stateProvider
+    .state('home', home);
+    
 }
 
-angular.module('wobble-blog')
-.config(router);
-
-router.$inject = ['$stateProvider', '$urlRouterProvider'];
-
+appConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 /* global angular */

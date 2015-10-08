@@ -1,4 +1,5 @@
 angular.module('wobble-blog', ['ionic', 'ng'])
-.run(appRun);
+.run(appRun)
+.config(appConfig);
 
-/* global angular appRun */
+/* global angular appRun appConfig */
